@@ -13,6 +13,10 @@ function Footer() {
 
   return (
     <footer className="footer">
+      <div className="footer-shape footer-shape-1"></div>
+      <div className="footer-shape footer-shape-2"></div>
+      <div className="footer-shape footer-shape-3"></div>
+      <div className="footer-shape footer-shape-4"></div>
       {content.links.map((link, index) => (
         <React.Fragment key={link.label}>
           {index > 0 && <span>·</span>}
