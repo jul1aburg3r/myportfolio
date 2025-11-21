@@ -3,8 +3,8 @@
     "id": "inventory-sync-bot",
     "name": "Inventory Sync Bot",
     "tagline": "Never update spreadsheets manually again.",
-    "description": "Automated  asdad asd ad asd aasd aasda asda asdsynchronization between multiple inventory systems, eliminating manual data entry and reducing human error.",
-    "techStack": ["Python"],
+    "description": "Automated synchronization between multiple inventory systems, eliminating manual data entry and reducing human error.",
+    "techStack": ["Python", "Redis", "PostgreSQL"],
     "impact": "Saves 5 hours/week",
     "icon": "package",
     "details": {
@@ -20,7 +20,7 @@
     "name": "Auto Report Generator",
     "tagline": "Turns raw data into polished reports overnight.",
     "description": "Scheduled automation that compiles data from multiple sources into formatted PDF reports, ready for stakeholders each morning.",
-    "techStack": ["Python", "Pandas", "Jinja2", "Jinja2", "Jinja2", "Jinja2", "WeasyPrint"],
+    "techStack": ["Python", "Pandas", "Jinja2", "WeasyPrint"],
     "impact": "Eliminated 3 hrs daily manual work",
     "icon": "bar-chart-2",
     "details": {
@@ -48,83 +48,51 @@
     }
   },
   {
-    "id": "slack-notifier",
-    "name": "Smart Slack Notifier",
-    "tagline": "The right alerts to the right people.",
-    "description": "Intelligent notification routing system that monitors various services and delivers contextual alerts to relevant team channels.",
-    "techStack": ["Node.js", "Slack API", "Redis", "Docker"],
-    "impact": "Reduced alert noise by 70%",
-    "icon": "bell",
+    "id": "data-pipeline",
+    "name": "ETL Data Pipeline",
+    "tagline": "Process millions of records effortlessly.",
+    "description": "Scalable data pipeline that extracts, transforms, and loads data from various sources into a centralized data warehouse.",
+    "techStack": ["Python", "Apache Airflow", "AWS S3", "Snowflake"],
+    "impact": "Processes 2M+ records daily",
+    "icon": "database",
     "details": {
-      "problem": "Alert fatigue was real—teams were drowning in notifications, causing important alerts to be missed among the noise.",
-      "solution": "Built a smart routing layer that aggregates, deduplicates, and routes alerts based on severity, ownership, and on-call schedules.",
-      "architecture": "Pub/sub model with Redis. Incoming alerts are enriched with context, deduplicated within time windows, and routed to appropriate channels.",
-      "codeSnippet": "const shouldAlert = async (event) => {\n  const recent = await cache.get(`alert:${event.signature}`);\n  if (recent && !event.critical) return false;\n  await cache.set(`alert:${event.signature}`, true, 'EX', 300);\n  return true;\n};",
-      "lessonsLearned": "Worked closely with on-call engineers to tune thresholds. Added feedback buttons to alerts so teams could train the system over time."
+      "problem": "Data scattered across multiple databases made analysis slow and error-prone, requiring manual exports and imports.",
+      "solution": "Built an automated ETL pipeline orchestrated by Airflow that runs on schedule and handles data quality validation.",
+      "architecture": "DAG-based workflow with parallel task execution. Each source has dedicated extractors, data is validated and transformed in staging, then loaded to warehouse.",
+      "codeSnippet": "from airflow import DAG\n\n@task\ndef extract_data(source):\n    return fetch_from_source(source)\n\n@task\ndef transform_data(raw_data):\n    return validate_and_clean(raw_data)",
+      "lessonsLearned": "Data quality checks at every stage prevent bad data from propagating. Implementing incremental loads significantly reduced processing time."
     }
   },
   {
-    "id": "slack-notifier",
-    "name": "Smart Slack Notifier",
-    "tagline": "The right alerts to the right people.",
-    "description": "Intelligent notification routing system that monitors various services and delivers contextual alerts to relevant team channels.",
-    "techStack": ["Node.js", "Slack API", "Redis", "Docker"],
-    "impact": "Reduced alert noise by 70%",
-    "icon": "bell",
+    "id": "api-monitor",
+    "name": "API Health Monitor",
+    "tagline": "Know about downtime before your users do.",
+    "description": "Real-time monitoring system that tracks API health, performance metrics, and automatically alerts when issues are detected.",
+    "techStack": ["Go", "Prometheus", "Grafana", "PostgreSQL"],
+    "impact": "Detected 100% of incidents before users",
+    "icon": "activity",
     "details": {
-      "problem": "Alert fatigue was real—teams were drowning in notifications, causing important alerts to be missed among the noise.",
-      "solution": "Built a smart routing layer that aggregates, deduplicates, and routes alerts based on severity, ownership, and on-call schedules.",
-      "architecture": "Pub/sub model with Redis. Incoming alerts are enriched with context, deduplicated within time windows, and routed to appropriate channels.",
-      "codeSnippet": "const shouldAlert = async (event) => {\n  const recent = await cache.get(`alert:${event.signature}`);\n  if (recent && !event.critical) return false;\n  await cache.set(`alert:${event.signature}`, true, 'EX', 300);\n  return true;\n};",
-      "lessonsLearned": "Worked closely with on-call engineers to tune thresholds. Added feedback buttons to alerts so teams could train the system over time."
+      "problem": "API outages were only discovered when users complained, leading to extended downtime and poor user experience.",
+      "solution": "Created a monitoring service that pings all critical endpoints every minute, tracks response times, and analyzes trends.",
+      "architecture": "Distributed health checkers report to central collector. Metrics stored in Prometheus with Grafana dashboards and alert rules.",
+      "codeSnippet": "func checkEndpoint(url string) HealthStatus {\n    start := time.Now()\n    resp, err := http.Get(url)\n    duration := time.Since(start)\n    return evaluateHealth(resp, err, duration)\n}",
+      "lessonsLearned": "False positives erode trust in alerts. Added smart thresholds and multi-region checks to minimize noise while maintaining sensitivity."
     }
   },
   {
-    "id": "slack-notifier",
-    "name": "Smart Slack Notifier",
-    "tagline": "The right alerts to the right people.",
-    "description": "Intelligent notification routing system that monitors various services and delivers contextual alerts to relevant team channels.",
-    "techStack": ["Node.js", "Slack API", "Redis", "Docker"],
-    "impact": "Reduced alert noise by 70%",
-    "icon": "bell",
+    "id": "deployment-bot",
+    "name": "Deployment Automation Bot",
+    "tagline": "Deploy to production with confidence.",
+    "description": "ChatOps-enabled deployment bot that handles releases, rollbacks, and environment management through simple Slack commands.",
+    "techStack": ["Python", "Kubernetes", "Slack API", "GitHub Actions"],
+    "impact": "Reduced deployment time by 80%",
+    "icon": "rocket",
     "details": {
-      "problem": "Alert fatigue was real—teams were drowning in notifications, causing important alerts to be missed among the noise.",
-      "solution": "Built a smart routing layer that aggregates, deduplicates, and routes alerts based on severity, ownership, and on-call schedules.",
-      "architecture": "Pub/sub model with Redis. Incoming alerts are enriched with context, deduplicated within time windows, and routed to appropriate channels.",
-      "codeSnippet": "const shouldAlert = async (event) => {\n  const recent = await cache.get(`alert:${event.signature}`);\n  if (recent && !event.critical) return false;\n  await cache.set(`alert:${event.signature}`, true, 'EX', 300);\n  return true;\n};",
-      "lessonsLearned": "Worked closely with on-call engineers to tune thresholds. Added feedback buttons to alerts so teams could train the system over time."
-    }
-  },
-  {
-    "id": "slack-notifier",
-    "name": "Smart Slack Notifier",
-    "tagline": "The right alerts to the right people.",
-    "description": "Intelligent notification routing system that monitors various services and delivers contextual alerts to relevant team channels.",
-    "techStack": ["Node.js", "Slack API", "Redis", "Docker"],
-    "impact": "Reduced alert noise by 70%",
-    "icon": "bell",
-    "details": {
-      "problem": "Alert fatigue was real—teams were drowning in notifications, causing important alerts to be missed among the noise.",
-      "solution": "Built a smart routing layer that aggregates, deduplicates, and routes alerts based on severity, ownership, and on-call schedules.",
-      "architecture": "Pub/sub model with Redis. Incoming alerts are enriched with context, deduplicated within time windows, and routed to appropriate channels.",
-      "codeSnippet": "const shouldAlert = async (event) => {\n  const recent = await cache.get(`alert:${event.signature}`);\n  if (recent && !event.critical) return false;\n  await cache.set(`alert:${event.signature}`, true, 'EX', 300);\n  return true;\n};",
-      "lessonsLearned": "Worked closely with on-call engineers to tune thresholds. Added feedback buttons to alerts so teams could train the system over time."
-    }
-  },
-  {
-    "id": "slack-notifier",
-    "name": "Smart Slack Notifier",
-    "tagline": "The right alerts to the right people.",
-    "description": "Intelligent notification routing system that monitors various services and delivers contextual alerts to relevant team channels.",
-    "techStack": ["Node.js", "Slack API", "Redis", "Docker"],
-    "impact": "Reduced alert noise by 70%",
-    "icon": "bell",
-    "details": {
-      "problem": "Alert fatigue was real—teams were drowning in notifications, causing important alerts to be missed among the noise.",
-      "solution": "Built a smart routing layer that aggregates, deduplicates, and routes alerts based on severity, ownership, and on-call schedules.",
-      "architecture": "Pub/sub model with Redis. Incoming alerts are enriched with context, deduplicated within time windows, and routed to appropriate channels.",
-      "codeSnippet": "const shouldAlert = async (event) => {\n  const recent = await cache.get(`alert:${event.signature}`);\n  if (recent && !event.critical) return false;\n  await cache.set(`alert:${event.signature}`, true, 'EX', 300);\n  return true;\n};",
-      "lessonsLearned": "Worked closely with on-call engineers to tune thresholds. Added feedback buttons to alerts so teams could train the system over time."
+      "problem": "Manual deployments required multiple steps across different tools, leading to errors and inconsistent releases.",
+      "solution": "Built a bot that integrates with CI/CD pipeline and allows deployments via Slack commands with built-in safety checks.",
+      "architecture": "Bot listens to Slack events, validates permissions, triggers GitHub Actions workflows, monitors Kubernetes rollouts, and reports status.",
+      "codeSnippet": "@bot.command('/deploy')\nasync def deploy(env, version):\n    if not validate_permissions(user):\n        return 'Unauthorized'\n    await trigger_deployment(env, version)\n    await monitor_rollout()",
+      "lessonsLearned": "Always provide a quick rollback mechanism. Added deployment locks to prevent concurrent deploys and comprehensive audit logging."
     }
   }
 ]

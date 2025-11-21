@@ -1,4 +1,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html {
+  overflow-y: scroll;
+}
 html, body, #root {
   height: 100%;
 }
@@ -7,6 +10,7 @@ body {
   background: #f5f5f5;
   color: #171717;
   line-height: 1.6;
+  min-height: 101vh;
 }
 #root {
   display: flex;
@@ -19,7 +23,8 @@ main {
 
 /* Header */
 .header {
-  position: relative;
+  position: sticky;
+  top: 0;
   padding: 5rem 2rem;
   background: #fff;
   overflow: hidden;
@@ -27,6 +32,13 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
+  transition: transform 0.3s ease;
+  min-height: 200px;
+  max-height: 200px;
+}
+.header.hidden {
+  transform: translateY(-100%);
 }
 .header-shape {
   position: absolute;
@@ -95,6 +107,38 @@ main {
   color: #171717;
 }
 
+/* Tech Filter */
+.tech-filter {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+.filter-tag {
+  background: #fff;
+  color: #525252;
+  padding: 0.3rem 0.7rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid #e5e5e5;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-tag:hover {
+  background: #f5f5f5;
+  color: #171717;
+  border-color: #d4d4d4;
+}
+.filter-tag.active {
+  background: #fff;
+  color: #525252;
+  border-color: #f2511b;
+}
+
 /* Grid */
 .grid {
   display: grid;
@@ -102,7 +146,16 @@ main {
   gap: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1.5rem 6rem;
+  padding: 1rem 1.5rem 6rem;
+}
+
+/* Card Wrapper */
+.card-wrapper {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.card-wrapper.fading-out {
+  opacity: 0;
+  transform: translateY(-10px);
 }
 
 /* Card */
@@ -118,6 +171,17 @@ main {
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   display: flex;
   flex-direction: column;
+  animation: fadeIn 0.3s ease-in;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .card:hover {
   border-color: #d4d4d4;

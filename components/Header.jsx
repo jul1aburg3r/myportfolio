@@ -1,7 +1,9 @@
-const { useState, useEffect } = React;
+const { useState, useEffect, useRef } = React;
 
 function Header() {
   const [content, setContent] = useState(null);
+  const [isHidden, setIsHidden] = useState(false);
+  const headerRef = useRef(null);
 
   useEffect(() => {
     fetch('content/header.json')
@@ -9,10 +11,23 @@ function Header() {
       .then(setContent);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const headerHeight = headerRef.current ? headerRef.current.offsetHeight : 0;
+
+      // Hide header when it would naturally scroll out of view
+      setIsHidden(scrollY >= headerHeight);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   if (!content) return null;
 
   return (
-    <header className="header">
+    <header ref={headerRef} className={`header ${isHidden ? 'hidden' : ''}`}>
       <div className="header-shape header-shape-1"></div>
       <div className="header-shape header-shape-2"></div>
       <div className="header-shape header-shape-3"></div>
