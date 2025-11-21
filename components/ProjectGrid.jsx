@@ -54,9 +54,11 @@ function ProjectGrid() {
       setTimeout(() => {
         setDisplayedProjects(filteredProjects);
         setFadingOut(new Set());
+        setTimeout(() => lucide.createIcons(), 0);
       }, 300);
     } else {
       setDisplayedProjects(filteredProjects);
+      setTimeout(() => lucide.createIcons(), 0);
     }
   }, [filteredProjects]);
 
