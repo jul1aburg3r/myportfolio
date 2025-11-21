@@ -6,7 +6,7 @@
     "description": "Automated synchronization between multiple inventory systems, eliminating manual data entry and reducing human error.",
     "techStack": ["Python", "REST API", "Cron", "PostgreSQL"],
     "impact": "Saves 5 hours/week",
-    "icon": "📦",
+    "icon": "package",
     "details": {
       "problem": "Manual inventory updates across multiple platforms led to data inconsistencies and wasted hours of repetitive work every week.",
       "solution": "Built an automated sync service that pulls data from various sources, reconciles differences, and updates all systems in real-time.",
@@ -22,7 +22,7 @@
     "description": "Scheduled automation that compiles data from multiple sources into formatted PDF reports, ready for stakeholders each morning.",
     "techStack": ["Python", "Pandas", "Jinja2", "WeasyPrint"],
     "impact": "Eliminated 3 hrs daily manual work",
-    "icon": "📊",
+    "icon": "bar-chart-2",
     "details": {
       "problem": "Analysts spent the first few hours of every day manually compiling data into standardized reports before they could do actual analysis.",
       "solution": "Created a templated report system that runs nightly, pulling fresh data, applying business logic, and generating pixel-perfect PDFs.",
@@ -38,7 +38,7 @@
     "description": "Intelligent notification routing system that monitors various services and delivers contextual alerts to relevant team channels.",
     "techStack": ["Node.js", "Slack API", "Redis", "Docker"],
     "impact": "Reduced alert noise by 70%",
-    "icon": "🔔",
+    "icon": "bell",
     "details": {
       "problem": "Alert fatigue was real—teams were drowning in notifications, causing important alerts to be missed among the noise.",
       "solution": "Built a smart routing layer that aggregates, deduplicates, and routes alerts based on severity, ownership, and on-call schedules.",

@@ -7,8 +7,17 @@ function App() {
   useEffect(() => {
     fetch('projects.json')
       .then(r => r.json())
-      .then(setProjects);
+      .then(data => {
+        setProjects(data);
+        setTimeout(() => lucide.createIcons(), 0);
+      });
   }, []);
+
+  useEffect(() => {
+    if (selectedProject) {
+      setTimeout(() => lucide.createIcons(), 0);
+    }
+  }, [selectedProject]);
 
   return (
     <>
@@ -50,7 +59,11 @@ function Header() {
 function Card({ project, onClick }) {
   return (
     <div className="card" onClick={onClick}>
-      {project.icon && <div className="card-icon">{project.icon}</div>}
+      {project.icon && (
+        <div className="card-icon">
+          <i data-lucide={project.icon}></i>
+        </div>
+      )}
       <h3>{project.name}</h3>
       <p className="card-tagline">{project.tagline}</p>
       <p className="card-description">{project.description}</p>
@@ -61,7 +74,7 @@ function Card({ project, onClick }) {
       </div>
       <div className="card-footer">
         <span className="impact">{project.impact}</span>
-        <span className="see-details">See details →</span>
+        <span className="see-details">Details</span>
       </div>
     </div>
   );
@@ -80,7 +93,11 @@ function Modal({ project, onClose }) {
         <div className="modal-content">
           <div className="modal-header">
             <div>
-              {project.icon && <div className="modal-icon">{project.icon}</div>}
+              {project.icon && (
+                <div className="modal-icon">
+                  <i data-lucide={project.icon}></i>
+                </div>
+              )}
               <h2>{project.name}</h2>
               <p className="modal-tagline">{project.tagline}</p>
             </div>
