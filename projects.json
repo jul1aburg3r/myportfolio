@@ -1,10 +1,10 @@
 [
   {
     "id": "inventory-sync-bot",
-    "name": "Inventory Sync Bot",
+    "name": "Controlling Automation",
     "tagline": "Never update spreadsheets manually again.",
     "description": "Automated synchronization between multiple inventory systems, eliminating manual data entry and reducing human error.",
-    "techStack": ["Python", "Redis", "PostgreSQL"],
+    "techStack": ["Jira API", "Tempo API", "SevDesk API", "Ablefy API", "Sheets", "Apps Script"],
     "impact": "Saves 5 hours/week",
     "icon": "package",
     "details": {
@@ -17,7 +17,7 @@
   },
   {
     "id": "report-generator",
-    "name": "Auto Report Generator",
+    "name": "Project Documentation from Jira Tasks",
     "tagline": "Turns raw data into polished reports overnight.",
     "description": "Scheduled automation that compiles data from multiple sources into formatted PDF reports, ready for stakeholders each morning.",
     "techStack": ["Python", "Pandas", "Jinja2", "WeasyPrint"],
@@ -33,7 +33,7 @@
   },
   {
     "id": "slack-notifier",
-    "name": "Smart Slack Notifier",
+    "name": "Automatic Sheets & Apps Scripts Documentation",
     "tagline": "The right alerts to the right people.",
     "description": "Intelligent notification routing system that monitors various services and delivers contextual alerts to relevant team channels.",
     "techStack": ["Node.js", "Slack API", "Redis", "Docker"],
@@ -49,7 +49,7 @@
   },
   {
     "id": "data-pipeline",
-    "name": "ETL Data Pipeline",
+    "name": "Daily Workflow Automations",
     "tagline": "Process millions of records effortlessly.",
     "description": "Scalable data pipeline that extracts, transforms, and loads data from various sources into a centralized data warehouse.",
     "techStack": ["Python", "Apache Airflow", "AWS S3", "Snowflake"],
@@ -65,7 +65,7 @@
   },
   {
     "id": "api-monitor",
-    "name": "API Health Monitor",
+    "name": "Worklogs & Billing automations",
     "tagline": "Know about downtime before your users do.",
     "description": "Real-time monitoring system that tracks API health, performance metrics, and automatically alerts when issues are detected.",
     "techStack": ["Go", "Prometheus", "Grafana", "PostgreSQL"],
@@ -81,7 +81,7 @@
   },
   {
     "id": "deployment-bot",
-    "name": "Deployment Automation Bot",
+    "name": "Webflow Form Submission Handling",
     "tagline": "Deploy to production with confidence.",
     "description": "ChatOps-enabled deployment bot that handles releases, rollbacks, and environment management through simple Slack commands.",
     "techStack": ["Python", "Kubernetes", "Slack API", "GitHub Actions"],
