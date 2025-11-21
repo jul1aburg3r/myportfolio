@@ -1,0 +1,50 @@
+[
+  {
+    "id": "inventory-sync-bot",
+    "name": "Inventory Sync Bot",
+    "tagline": "Never update spreadsheets manually again.",
+    "description": "Automated synchronization between multiple inventory systems, eliminating manual data entry and reducing human error.",
+    "techStack": ["Python", "REST API", "Cron", "PostgreSQL"],
+    "impact": "Saves 5 hours/week",
+    "icon": "📦",
+    "details": {
+      "problem": "Manual inventory updates across multiple platforms led to data inconsistencies and wasted hours of repetitive work every week.",
+      "solution": "Built an automated sync service that pulls data from various sources, reconciles differences, and updates all systems in real-time.",
+      "architecture": "Event-driven architecture with a central message queue. Each inventory system has a dedicated adapter that translates between the common format and system-specific APIs.",
+      "codeSnippet": "async def sync_inventory():\n    sources = await gather_all_sources()\n    reconciled = reconcile_differences(sources)\n    await push_updates(reconciled)",
+      "lessonsLearned": "Idempotency is crucial for sync operations. Added checksums to prevent duplicate updates and implemented retry logic with exponential backoff."
+    }
+  },
+  {
+    "id": "report-generator",
+    "name": "Auto Report Generator",
+    "tagline": "Turns raw data into polished reports overnight.",
+    "description": "Scheduled automation that compiles data from multiple sources into formatted PDF reports, ready for stakeholders each morning.",
+    "techStack": ["Python", "Pandas", "Jinja2", "WeasyPrint"],
+    "impact": "Eliminated 3 hrs daily manual work",
+    "icon": "📊",
+    "details": {
+      "problem": "Analysts spent the first few hours of every day manually compiling data into standardized reports before they could do actual analysis.",
+      "solution": "Created a templated report system that runs nightly, pulling fresh data, applying business logic, and generating pixel-perfect PDFs.",
+      "architecture": "Pipeline architecture: Data extraction → Transformation → Template rendering → PDF generation → Email distribution.",
+      "codeSnippet": "def generate_report(template, data):\n    html = render_template(template, data)\n    return weasyprint.HTML(string=html).write_pdf()",
+      "lessonsLearned": "Template versioning is essential. Built a system to track which template version generated each report for audit trails."
+    }
+  },
+  {
+    "id": "slack-notifier",
+    "name": "Smart Slack Notifier",
+    "tagline": "The right alerts to the right people.",
+    "description": "Intelligent notification routing system that monitors various services and delivers contextual alerts to relevant team channels.",
+    "techStack": ["Node.js", "Slack API", "Redis", "Docker"],
+    "impact": "Reduced alert noise by 70%",
+    "icon": "🔔",
+    "details": {
+      "problem": "Alert fatigue was real—teams were drowning in notifications, causing important alerts to be missed among the noise.",
+      "solution": "Built a smart routing layer that aggregates, deduplicates, and routes alerts based on severity, ownership, and on-call schedules.",
+      "architecture": "Pub/sub model with Redis. Incoming alerts are enriched with context, deduplicated within time windows, and routed to appropriate channels.",
+      "codeSnippet": "const shouldAlert = async (event) => {\n  const recent = await cache.get(`alert:${event.signature}`);\n  if (recent && !event.critical) return false;\n  await cache.set(`alert:${event.signature}`, true, 'EX', 300);\n  return true;\n};",
+      "lessonsLearned": "Worked closely with on-call engineers to tune thresholds. Added feedback buttons to alerts so teams could train the system over time."
+    }
+  }
+]
