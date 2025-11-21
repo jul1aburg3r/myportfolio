@@ -3,8 +3,8 @@
     "id": "inventory-sync-bot",
     "name": "Inventory Sync Bot",
     "tagline": "Never update spreadsheets manually again.",
-    "description": "Automated synchronization between multiple inventory systems, eliminating manual data entry and reducing human error.",
-    "techStack": ["Python", "REST API", "Cron", "PostgreSQL"],
+    "description": "Automated  asdad asd ad asd aasd aasda asda asdsynchronization between multiple inventory systems, eliminating manual data entry and reducing human error.",
+    "techStack": ["Python"],
     "impact": "Saves 5 hours/week",
     "icon": "package",
     "details": {
@@ -20,7 +20,7 @@
     "name": "Auto Report Generator",
     "tagline": "Turns raw data into polished reports overnight.",
     "description": "Scheduled automation that compiles data from multiple sources into formatted PDF reports, ready for stakeholders each morning.",
-    "techStack": ["Python", "Pandas", "Jinja2", "WeasyPrint"],
+    "techStack": ["Python", "Pandas", "Jinja2", "Jinja2", "Jinja2", "Jinja2", "WeasyPrint"],
     "impact": "Eliminated 3 hrs daily manual work",
     "icon": "bar-chart-2",
     "details": {
@@ -29,6 +29,86 @@
       "architecture": "Pipeline architecture: Data extraction → Transformation → Template rendering → PDF generation → Email distribution.",
       "codeSnippet": "def generate_report(template, data):\n    html = render_template(template, data)\n    return weasyprint.HTML(string=html).write_pdf()",
       "lessonsLearned": "Template versioning is essential. Built a system to track which template version generated each report for audit trails."
+    }
+  },
+  {
+    "id": "slack-notifier",
+    "name": "Smart Slack Notifier",
+    "tagline": "The right alerts to the right people.",
+    "description": "Intelligent notification routing system that monitors various services and delivers contextual alerts to relevant team channels.",
+    "techStack": ["Node.js", "Slack API", "Redis", "Docker"],
+    "impact": "Reduced alert noise by 70%",
+    "icon": "bell",
+    "details": {
+      "problem": "Alert fatigue was real—teams were drowning in notifications, causing important alerts to be missed among the noise.",
+      "solution": "Built a smart routing layer that aggregates, deduplicates, and routes alerts based on severity, ownership, and on-call schedules.",
+      "architecture": "Pub/sub model with Redis. Incoming alerts are enriched with context, deduplicated within time windows, and routed to appropriate channels.",
+      "codeSnippet": "const shouldAlert = async (event) => {\n  const recent = await cache.get(`alert:${event.signature}`);\n  if (recent && !event.critical) return false;\n  await cache.set(`alert:${event.signature}`, true, 'EX', 300);\n  return true;\n};",
+      "lessonsLearned": "Worked closely with on-call engineers to tune thresholds. Added feedback buttons to alerts so teams could train the system over time."
+    }
+  },
+  {
+    "id": "slack-notifier",
+    "name": "Smart Slack Notifier",
+    "tagline": "The right alerts to the right people.",
+    "description": "Intelligent notification routing system that monitors various services and delivers contextual alerts to relevant team channels.",
+    "techStack": ["Node.js", "Slack API", "Redis", "Docker"],
+    "impact": "Reduced alert noise by 70%",
+    "icon": "bell",
+    "details": {
+      "problem": "Alert fatigue was real—teams were drowning in notifications, causing important alerts to be missed among the noise.",
+      "solution": "Built a smart routing layer that aggregates, deduplicates, and routes alerts based on severity, ownership, and on-call schedules.",
+      "architecture": "Pub/sub model with Redis. Incoming alerts are enriched with context, deduplicated within time windows, and routed to appropriate channels.",
+      "codeSnippet": "const shouldAlert = async (event) => {\n  const recent = await cache.get(`alert:${event.signature}`);\n  if (recent && !event.critical) return false;\n  await cache.set(`alert:${event.signature}`, true, 'EX', 300);\n  return true;\n};",
+      "lessonsLearned": "Worked closely with on-call engineers to tune thresholds. Added feedback buttons to alerts so teams could train the system over time."
+    }
+  },
+  {
+    "id": "slack-notifier",
+    "name": "Smart Slack Notifier",
+    "tagline": "The right alerts to the right people.",
+    "description": "Intelligent notification routing system that monitors various services and delivers contextual alerts to relevant team channels.",
+    "techStack": ["Node.js", "Slack API", "Redis", "Docker"],
+    "impact": "Reduced alert noise by 70%",
+    "icon": "bell",
+    "details": {
+      "problem": "Alert fatigue was real—teams were drowning in notifications, causing important alerts to be missed among the noise.",
+      "solution": "Built a smart routing layer that aggregates, deduplicates, and routes alerts based on severity, ownership, and on-call schedules.",
+      "architecture": "Pub/sub model with Redis. Incoming alerts are enriched with context, deduplicated within time windows, and routed to appropriate channels.",
+      "codeSnippet": "const shouldAlert = async (event) => {\n  const recent = await cache.get(`alert:${event.signature}`);\n  if (recent && !event.critical) return false;\n  await cache.set(`alert:${event.signature}`, true, 'EX', 300);\n  return true;\n};",
+      "lessonsLearned": "Worked closely with on-call engineers to tune thresholds. Added feedback buttons to alerts so teams could train the system over time."
+    }
+  },
+  {
+    "id": "slack-notifier",
+    "name": "Smart Slack Notifier",
+    "tagline": "The right alerts to the right people.",
+    "description": "Intelligent notification routing system that monitors various services and delivers contextual alerts to relevant team channels.",
+    "techStack": ["Node.js", "Slack API", "Redis", "Docker"],
+    "impact": "Reduced alert noise by 70%",
+    "icon": "bell",
+    "details": {
+      "problem": "Alert fatigue was real—teams were drowning in notifications, causing important alerts to be missed among the noise.",
+      "solution": "Built a smart routing layer that aggregates, deduplicates, and routes alerts based on severity, ownership, and on-call schedules.",
+      "architecture": "Pub/sub model with Redis. Incoming alerts are enriched with context, deduplicated within time windows, and routed to appropriate channels.",
+      "codeSnippet": "const shouldAlert = async (event) => {\n  const recent = await cache.get(`alert:${event.signature}`);\n  if (recent && !event.critical) return false;\n  await cache.set(`alert:${event.signature}`, true, 'EX', 300);\n  return true;\n};",
+      "lessonsLearned": "Worked closely with on-call engineers to tune thresholds. Added feedback buttons to alerts so teams could train the system over time."
+    }
+  },
+  {
+    "id": "slack-notifier",
+    "name": "Smart Slack Notifier",
+    "tagline": "The right alerts to the right people.",
+    "description": "Intelligent notification routing system that monitors various services and delivers contextual alerts to relevant team channels.",
+    "techStack": ["Node.js", "Slack API", "Redis", "Docker"],
+    "impact": "Reduced alert noise by 70%",
+    "icon": "bell",
+    "details": {
+      "problem": "Alert fatigue was real—teams were drowning in notifications, causing important alerts to be missed among the noise.",
+      "solution": "Built a smart routing layer that aggregates, deduplicates, and routes alerts based on severity, ownership, and on-call schedules.",
+      "architecture": "Pub/sub model with Redis. Incoming alerts are enriched with context, deduplicated within time windows, and routed to appropriate channels.",
+      "codeSnippet": "const shouldAlert = async (event) => {\n  const recent = await cache.get(`alert:${event.signature}`);\n  if (recent && !event.critical) return false;\n  await cache.set(`alert:${event.signature}`, true, 'EX', 300);\n  return true;\n};",
+      "lessonsLearned": "Worked closely with on-call engineers to tune thresholds. Added feedback buttons to alerts so teams could train the system over time."
     }
   },
   {
