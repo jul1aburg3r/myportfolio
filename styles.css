@@ -286,6 +286,9 @@ main {
   background: #e5e5e5;
   color: #171717;
 }
+.modal-tech-stack {
+  margin-bottom: 1.5rem;
+}
 .modal-section {
   margin-bottom: 1.5rem;
 }

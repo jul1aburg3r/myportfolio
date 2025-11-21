@@ -1,0 +1,24 @@
+const { useState, useEffect } = React;
+
+function Footer() {
+  const [content, setContent] = useState(null);
+
+  useEffect(() => {
+    fetch('content/footer.json')
+      .then(r => r.json())
+      .then(setContent);
+  }, []);
+
+  if (!content) return null;
+
+  return (
+    <footer className="footer">
+      {content.links.map((link, index) => (
+        <React.Fragment key={link.label}>
+          {index > 0 && <span>·</span>}
+          <a href={link.url} target="_blank" rel="noopener">{link.label}</a>
+        </React.Fragment>
+      ))}
+    </footer>
+  );
+}
