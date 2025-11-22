@@ -1,27 +1,20 @@
 ---
-description: Review code and commit with push if no critical issues
-allowed-tools: Bash(git:*), Read, Glob, Grep
+description: Create git commit and push to remote
+allowed-tools: Bash(git:*)
 ---
 
-Perform a comprehensive code review and create a git commit if everything looks good.
+Create a git commit with all uncommitted changes and push to remote.
 
 ## Process
 
-1. **Run Code Review**
-   - Execute the `/review` command to analyze all uncommitted changes
-   - Provide a detailed review report following all review criteria
+1. **Verify Changes**
+   - Run `git status` to see what will be committed
+   - Run `git diff` to review the actual changes
 
-2. **Present Findings**
-   - Show critical issues, important issues, suggestions, and positive notes
-   - Clearly indicate if there are blocking issues
+2. **Check Recent History**
+   - Run `git log --oneline -3` to see recent commits for style reference
 
-3. **Decision Point**
-   - If **critical issues** exist: Stop and ask user to fix them first
-   - If **only suggestions/minor issues**: Proceed to commit step
-
-4. **Create Commit**
-   - Run `git status` and `git diff` to understand changes
-   - Check recent commit history for style reference
+3. **Create Commit**
    - Draft a clear, concise commit message explaining the "why"
    - Stage all changes with `git add -A`
    - Create commit with proper formatting:
@@ -36,12 +29,11 @@ Perform a comprehensive code review and create a git commit if everything looks 
      ```
    - Verify commit success with `git status`
 
-5. **Push to Remote**
-   - Automatically push to remote with `git push`
+4. **Push to Remote**
+   - Push to remote with `git push`
    - Confirm push was successful
 
 ## Notes
-- Never commit if critical security or breaking issues are found
-- Always explain what changed and why in the commit message
 - Follow the repository's existing commit message style
 - Don't commit files with secrets (.env, credentials, etc.)
+- If no changes to commit, inform the user
