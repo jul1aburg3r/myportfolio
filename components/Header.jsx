@@ -16,8 +16,8 @@ function Header() {
       const scrollY = window.scrollY;
       const headerHeight = headerRef.current ? headerRef.current.offsetHeight : 0;
 
-      // Hide header when it would naturally scroll out of view
-      setIsHidden(scrollY >= headerHeight);
+      // Hide header earlier - when scrolled 30% of header height
+      setIsHidden(scrollY >= headerHeight * 0.3);
     };
 
     window.addEventListener('scroll', handleScroll);

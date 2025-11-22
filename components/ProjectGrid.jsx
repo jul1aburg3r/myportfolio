@@ -90,6 +90,8 @@ function ProjectGrid() {
             <ProjectCard
               project={project}
               onClick={() => setSelectedProject(project)}
+              onToggleTech={handleToggleTech}
+              selectedTechs={selectedTechs}
             />
           </div>
         ))}
