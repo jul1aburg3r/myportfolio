@@ -1,5 +1,13 @@
 const { useState, useEffect } = React;
 
+/**
+ * Custom hook for fetching data from a URL
+ * @param {string} url - The URL to fetch data from
+ * @returns {Object} Object containing data, loading state, and error
+ * @returns {*} returns.data - The fetched data (null if loading or error)
+ * @returns {boolean} returns.loading - Loading state indicator
+ * @returns {string|null} returns.error - Error message if fetch failed
+ */
 function useFetch(url) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);

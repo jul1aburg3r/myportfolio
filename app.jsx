@@ -1,10 +1,13 @@
+/**
+ * Main App component - Root component of the portfolio application
+ */
 function App() {
   return (
-    <>
+    <ErrorBoundary>
       <Header />
       <ProjectGrid />
       <Footer />
-    </>
+    </ErrorBoundary>
   );
 }
 

@@ -1,5 +1,10 @@
 const { useEffect } = React;
 
+/**
+ * Modal component for displaying detailed project information
+ * @param {Object} project - The project object to display
+ * @param {Function} onClose - Callback function to close the modal
+ */
 function ProjectModal({ project, onClose }) {
   useEffect(() => {
     const handleEsc = (e) => e.key === 'Escape' && onClose();
@@ -31,25 +36,34 @@ function ProjectModal({ project, onClose }) {
           </div>
 
           <div className="modal-section">
-            <h3>Problem</h3>
+            <h3>Problemstellung</h3>
             <p>{project.details.problem}</p>
           </div>
 
           <div className="modal-section">
-            <h3>Solution</h3>
+            <h3>Lösung</h3>
             <p>{project.details.solution}</p>
           </div>
 
           {project.details.architecture && (
             <div className="modal-section">
-              <h3>Architecture</h3>
+              <h3>Architektur</h3>
               <p>{project.details.architecture}</p>
+            </div>
+          )}
+
+          {project.details.image && (
+            <div className="modal-section">
+              <img src={project.details.image} alt={project.details.imageAlt || project.name} className="modal-image" />
+              {project.details.imageAlt && (
+                <p className="image-caption">{project.details.imageAlt}</p>
+              )}
             </div>
           )}
 
           {project.details.codeSnippet && (
             <div className="modal-section">
-              <h3>Code Sample</h3>
+              <h3>Code-Beispiel</h3>
               <pre className="code-block">{project.details.codeSnippet}</pre>
             </div>
           )}
@@ -69,3 +83,25 @@ function ProjectModal({ project, onClose }) {
     </div>
   );
 }
+
+ProjectModal.propTypes = {
+  project: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    tagline: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    techStack: PropTypes.arrayOf(PropTypes.string).isRequired,
+    impact: PropTypes.string.isRequired,
+    icon: PropTypes.string,
+    details: PropTypes.shape({
+      problem: PropTypes.string.isRequired,
+      solution: PropTypes.string.isRequired,
+      architecture: PropTypes.string,
+      codeSnippet: PropTypes.string,
+      lessonsLearned: PropTypes.string,
+      image: PropTypes.string,
+      imageAlt: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
+  onClose: PropTypes.func.isRequired,
+};

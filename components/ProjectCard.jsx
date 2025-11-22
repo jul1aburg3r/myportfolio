@@ -1,3 +1,10 @@
+/**
+ * Card component for displaying project summary with tech stack filtering
+ * @param {Object} project - The project object to display
+ * @param {Function} onClick - Callback when card details are clicked
+ * @param {Function} onToggleTech - Callback to toggle tech filter
+ * @param {Array} selectedTechs - Array of currently selected tech filters
+ */
 const ProjectCard = React.memo(function ProjectCard({ project, onClick, onToggleTech, selectedTechs }) {
   const handleTechClick = (e, tech) => {
     e.stopPropagation();
@@ -32,3 +39,18 @@ const ProjectCard = React.memo(function ProjectCard({ project, onClick, onToggle
     </div>
   );
 });
+
+ProjectCard.propTypes = {
+  project: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    tagline: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    techStack: PropTypes.arrayOf(PropTypes.string).isRequired,
+    impact: PropTypes.string.isRequired,
+    icon: PropTypes.string,
+  }).isRequired,
+  onClick: PropTypes.func.isRequired,
+  onToggleTech: PropTypes.func.isRequired,
+  selectedTechs: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
