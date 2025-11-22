@@ -28,7 +28,7 @@ function Header() {
       <div className="header-shape header-shape-3"></div>
       <div className="header-content">
         <h1>{content.title}</h1>
-        <p>{content.subtitle}</p>
+        <p dangerouslySetInnerHTML={{ __html: content.subtitle }}></p>
       </div>
     </header>
   );
