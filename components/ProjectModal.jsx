@@ -8,8 +8,8 @@ function ProjectModal({ project, onClose }) {
   }, [onClose]);
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal" onClick={e => e.stopPropagation()}>
+    <div className="modal-overlay modal-entering" onClick={onClose}>
+      <div className="modal modal-entering" onClick={e => e.stopPropagation()}>
         <div className="modal-content">
           <div className="modal-header">
             <div>
@@ -21,7 +21,7 @@ function ProjectModal({ project, onClose }) {
               <h2>{project.name}</h2>
               <p className="modal-tagline">{project.tagline}</p>
             </div>
-            <button className="close-btn" onClick={onClose}>×</button>
+            <button className="close-btn" onClick={onClose} aria-label="Close modal">×</button>
           </div>
 
           <div className="tech-stack modal-tech-stack">
