@@ -256,6 +256,21 @@ main {
       65px -18px 0 #f59e0b, 62px 0px 0 var(--color-primary), 60px 18px 0 #fbbf24, 120px 12px 0 #f59e0b;
   }
 }
+/* Accessibility: Disable animations for users with motion sensitivity */
+@media (prefers-reduced-motion: reduce) {
+  .header .highlight {
+    animation: none;
+  }
+  .header .highlight::before {
+    animation: none;
+    opacity: 0;
+  }
+  .header-shape-1,
+  .header-shape-2,
+  .header-shape-3 {
+    animation: none;
+  }
+}
 .header-links {
   display: flex;
   justify-content: center;

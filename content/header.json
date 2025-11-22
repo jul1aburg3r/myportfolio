@@ -1,4 +1,8 @@
 {
   "title": "Project Portfolio",
-  "subtitle": "Things I built for efficiency - and <span class='highlight'>fun</span>."
+  "subtitle": {
+    "before": "Things I built for efficiency - and ",
+    "highlight": "fun",
+    "after": "."
+  }
 }

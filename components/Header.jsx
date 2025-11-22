@@ -28,7 +28,11 @@ function Header() {
       <div className="header-shape header-shape-3"></div>
       <div className="header-content">
         <h1>{content.title}</h1>
-        <p dangerouslySetInnerHTML={{ __html: content.subtitle }}></p>
+        <p>
+          {content.subtitle.before}
+          <span className="highlight">{content.subtitle.highlight}</span>
+          {content.subtitle.after}
+        </p>
       </div>
     </header>
   );
