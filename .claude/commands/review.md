@@ -67,6 +67,14 @@ Review all uncommitted changes in the git repository with a comprehensive analys
 - Check if complex logic needs comments
 - Verify proper file organization
 
+### Reusability & Abstraction
+- Identify repeated patterns that should be extracted into functions
+- Look for similar code blocks that can be combined
+- Check for opportunities to create reusable utilities or helpers
+- Verify common logic is abstracted into shared functions
+- Identify hardcoded values that should be parameterized
+- Look for duplicate components that could be unified with props
+
 ### Documentation
 - Check if complex logic has explanatory comments
 - Verify README is up to date
