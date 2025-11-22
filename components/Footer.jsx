@@ -1,15 +1,8 @@
-const { useState, useEffect } = React;
-
 function Footer() {
-  const [content, setContent] = useState(null);
+  const { data: content, loading, error } = useFetch('content/footer.json');
 
-  useEffect(() => {
-    fetch('content/footer.json')
-      .then(r => r.json())
-      .then(setContent);
-  }, []);
-
-  if (!content) return null;
+  if (loading) return null;
+  if (error) return null;
 
   return (
     <footer className="footer">

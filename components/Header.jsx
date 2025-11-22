@@ -1,30 +1,25 @@
-const { useState, useEffect, useRef } = React;
+const { useState, useEffect, useRef, useCallback } = React;
 
 function Header() {
-  const [content, setContent] = useState(null);
+  const { data: content, loading, error } = useFetch('content/header.json');
   const [isHidden, setIsHidden] = useState(false);
   const headerRef = useRef(null);
 
-  useEffect(() => {
-    fetch('content/header.json')
-      .then(r => r.json())
-      .then(setContent);
+  const handleScroll = useCallback(() => {
+    const scrollY = window.scrollY;
+    const headerHeight = headerRef.current ? headerRef.current.offsetHeight : 0;
+
+    // Hide header earlier - when scrolled 30% of header height
+    setIsHidden(scrollY >= headerHeight * 0.3);
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      const headerHeight = headerRef.current ? headerRef.current.offsetHeight : 0;
-
-      // Hide header earlier - when scrolled 30% of header height
-      setIsHidden(scrollY >= headerHeight * 0.3);
-    };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [handleScroll]);
 
-  if (!content) return null;
+  if (loading) return null;
+  if (error) return null;
 
   return (
     <header ref={headerRef} className={`header ${isHidden ? 'hidden' : ''}`}>

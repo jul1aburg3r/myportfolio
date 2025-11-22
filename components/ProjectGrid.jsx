@@ -1,30 +1,25 @@
-const { useState, useEffect, useMemo } = React;
+const { useState, useEffect, useMemo, useCallback } = React;
 
 function ProjectGrid() {
-  const [projects, setProjects] = useState([]);
+  const { data: projects, loading, error } = useFetch('projects.json');
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedTechs, setSelectedTechs] = useState([]);
   const [displayedProjects, setDisplayedProjects] = useState([]);
   const [fadingOut, setFadingOut] = useState(new Set());
 
+  // Initialize displayed projects when data loads
   useEffect(() => {
-    fetch('projects.json')
-      .then(r => r.json())
-      .then(data => {
-        setProjects(data);
-        setDisplayedProjects(data);
-        setTimeout(() => lucide.createIcons(), 0);
-      });
-  }, []);
-
-  useEffect(() => {
-    if (selectedProject) {
-      setTimeout(() => lucide.createIcons(), 0);
+    if (projects) {
+      setDisplayedProjects(projects);
     }
-  }, [selectedProject]);
+  }, [projects]);
+
+  // Initialize icons when projects or modal changes
+  useInitIcons([displayedProjects, selectedProject]);
 
   // Extract unique technologies
   const allTechnologies = useMemo(() => {
+    if (!projects) return [];
     const techSet = new Set();
     projects.forEach(project => {
       project.techStack.forEach(tech => techSet.add(tech));
@@ -34,6 +29,7 @@ function ProjectGrid() {
 
   // Filter projects based on selected technologies
   const filteredProjects = useMemo(() => {
+    if (!projects) return [];
     if (selectedTechs.length === 0) return projects;
     return projects.filter(project =>
       selectedTechs.some(tech => project.techStack.includes(tech))
@@ -54,15 +50,13 @@ function ProjectGrid() {
       setTimeout(() => {
         setDisplayedProjects(filteredProjects);
         setFadingOut(new Set());
-        setTimeout(() => lucide.createIcons(), 0);
       }, 300);
     } else {
       setDisplayedProjects(filteredProjects);
-      setTimeout(() => lucide.createIcons(), 0);
     }
-  }, [filteredProjects]);
+  }, [filteredProjects, displayedProjects]);
 
-  const handleToggleTech = (tech) => {
+  const handleToggleTech = useCallback((tech) => {
     if (tech === null) {
       setSelectedTechs([]);
     } else {
@@ -72,7 +66,10 @@ function ProjectGrid() {
           : [...prev, tech]
       );
     }
-  };
+  }, []);
+
+  if (loading) return null;
+  if (error) return null;
 
   return (
     <>

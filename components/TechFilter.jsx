@@ -1,4 +1,4 @@
-function TechFilter({ technologies, selectedTechs, onToggleTech }) {
+const TechFilter = React.memo(function TechFilter({ technologies, selectedTechs, onToggleTech }) {
   return (
     <div className="tech-filter">
       <button
@@ -18,4 +18,4 @@ function TechFilter({ technologies, selectedTechs, onToggleTech }) {
       ))}
     </div>
   );
-}
+});

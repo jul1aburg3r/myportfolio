@@ -1,4 +1,4 @@
-function ProjectCard({ project, onClick, onToggleTech, selectedTechs }) {
+const ProjectCard = React.memo(function ProjectCard({ project, onClick, onToggleTech, selectedTechs }) {
   const handleTechClick = (e, tech) => {
     e.stopPropagation();
     onToggleTech(tech);
@@ -31,4 +31,4 @@ function ProjectCard({ project, onClick, onToggleTech, selectedTechs }) {
       </div>
     </div>
   );
-}
+});
